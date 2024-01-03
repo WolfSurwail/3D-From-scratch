@@ -12,6 +12,12 @@ public class a3DPolygon {
     }
 
     void createPolygon() {
-        Screen.DrawablePolygons[Screen.NumberOfPolygons] = new PolygonObject(x,y,color);
+        double[] newX = new double[x.length];
+        double[] newY = new double[x.length];
+        for (int i = 0; i < newX.length; i++) {
+            newX[i] = Calculator.CalculatePositionX(Screen.ViewFrom, Screen.ViewTo, x[i],y[i],z[i]);
+            newY[i] = Calculator.CalculatePositionY(Screen.ViewFrom, Screen.ViewTo, x[i],y[i],z[i]);
+        }
+        Screen.DrawablePolygons[Screen.NumberOfPolygons] = new PolygonObject(newX,newY,color);
     }
 }
