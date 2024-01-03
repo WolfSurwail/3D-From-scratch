@@ -2,17 +2,39 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Screen extends JPanel {
-    static double[] ViewFrom = new double[]{10,10,10};
-    static double[] ViewTo = new double[]{5,0,0};
+    double SleepTime = 1000/30, LastRefresh = 0;
+    static double[] ViewFrom = new double[] {10, 10, 10};
+    static double[] ViewTo = new double[] {5, 0, 0};
     static int NumberOfPolygons = 0;
     static PolygonObject[] DrawablePolygons = new PolygonObject[100];
-    a3DPolygon a3DPolygon = new a3DPolygon(new double[]{2,4,2}, new double[]{2,4,6}, new double[]{5,5,5}, Color.BLACK);;
-    public Screen() {
+
+    a3DPolygon DPoly1 = new a3DPolygon(new double[]{2, 4, 2}, new double[]{2, 4, 6},  new double[]{5, 5, 5}, Color.black);
+    public Screen()
+    {
 
     }
-    public void paintComponent(Graphics g) {
-        for (int i = 0; i < NumberOfPolygons; i++) {
+
+    public void paintComponent(Graphics g)
+    {
+        g.clearRect(0, 0, 2000, 1200);
+        g.drawString(System.currentTimeMillis() + "", 20, 20);
+        for(int i = 0; i < NumberOfPolygons; i++)
             DrawablePolygons[i].drawPolygon(g);
+        SleepAndRefresh();
+    }
+    void SleepAndRefresh() {
+        while (true) {
+            if (System.currentTimeMillis() - LastRefresh > SleepTime) {
+                LastRefresh = System.currentTimeMillis();
+                repaint();
+                break;
+            } else {
+                try {
+                    Thread.sleep((long) ((long) SleepTime - (System.currentTimeMillis() - LastRefresh)));
+                } catch (Exception e) {
+
+                }
+            }
         }
     }
 }
