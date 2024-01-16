@@ -1,7 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class DDDTutorial
 {
@@ -16,6 +15,6 @@ public class DDDTutorial
         F.setUndecorated(true);
         F.setSize(ScreenSize);
         F.setVisible(true);
-        F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        F.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }
